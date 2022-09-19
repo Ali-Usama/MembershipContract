@@ -67,29 +67,29 @@ function App() {
                 systemProgram: SystemProgram.programId,
             }).rpc();
             console.log("Transaction done: ", tx);
+            alert("Transaction Done: ", tx)
             const membershipState = await program.account.membershipState.fetch(memberAccount);
             console.log('State: ', membershipState.isMember, ' ', membershipState.bump);
 
         } catch (err) {
             console.log("Transaction error: ", err);
+            alert("Error:  ", err)
         }
     }
 
     if (!wallet.connected) {
         /* If the user's wallet is not connected, display connect wallet button. */
-        console.log("in If condition")
         return (
 
             <div style={{display: 'flex', justifyContent: 'center', marginTop: '100px'}}>
-                <h3>Confirm Transaction App</h3>
+                <h3>Membership App</h3>
                 <WalletMultiButton/>
             </div>
         )
     } else {
-        console.log("in else condition")
         return (
             <div className="App">
-                <h3>Confirm Transaction App</h3>
+                <h3>Membership App</h3>
                 <div>
 
                     <button onClick={confirmTransaction}>Confirm Transaction</button>
