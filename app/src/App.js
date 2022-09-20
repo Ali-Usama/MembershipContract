@@ -94,6 +94,15 @@ function App() {
 
                     <button onClick={confirmTransaction}>Confirm Transaction</button>
 
+                    <br/>
+                    <br/>
+                    <p>Please set your wallet network to Devnet before testing</p>
+                    <br/>
+                    <p>This contract currently takes 1 SOL from the user and transfers to an owner wallet</p>
+                    <p>A member can only be registered once.</p>
+                    <br/>
+                    <p>They will get an error if they try to register again from the same account.</p>
+
 
                 </div>
             </div>
