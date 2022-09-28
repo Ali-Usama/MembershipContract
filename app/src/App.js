@@ -1,7 +1,11 @@
 // import logo from './logo.svg';
 import './App.css';
 import {useState} from 'react';
-import {Connection, PublicKey} from '@solana/web3.js';
+import bg from "./Components/assets/imgs/home-banner-1.jpg";
+import img from "./Components/assets/imgs/boho-style-bedding_176382-2339-1.jpg";
+import "./Components/assets/css/mainScreen.css";
+
+import {Connection, PublicKey, LAMPORTS_PER_SOL, Keypair} from '@solana/web3.js';
 import {AnchorProvider, BN, Program, Provider, web3} from '@project-serum/anchor';
 import {utf8} from "@project-serum/anchor/dist/cjs/utils/bytes";
 import idl from './idl.json';
@@ -39,6 +43,18 @@ function App() {
         );
     }
 
+    async function getBalance() {
+        let connection = (await getProvider()).connection;
+        let balance = await connection.getBalance(new web3.PublicKey(window.solana.publicKey.toString()));
+        alert(`${balance / LAMPORTS_PER_SOL} SOL`)
+        console.log(`${balance / LAMPORTS_PER_SOL} SOL`);
+    }
+
+    async function createAccount() {
+        let account = Keypair.generate();
+        console.log("Account: ", account);
+    }
+
     async function confirmTransaction() {
         const provider = await getProvider()
         console.log("Provider: ", provider);
@@ -55,55 +71,142 @@ function App() {
         );
 
         debugger
-        console.log("pool account: ", memberAccount.toString());
+        console.log("Member account: ", memberAccount.toString());
         console.log("bump: ", poolBump);
 
         try {
             /* interact with the program via rpc */
-            const tx = await program.methods.transferLamports(poolBump).accounts({
+            const tx = await program.methods.transferLamports(poolBump, lamports).accounts({
                 from: treasury,
                 memberAccount: memberAccount,
                 to: receiver,
                 systemProgram: SystemProgram.programId,
             }).rpc();
             console.log("Transaction done: ", tx);
-            alert("Transaction Done: ", tx)
+            alert(`Transaction Done: ${tx}`);
             const membershipState = await program.account.membershipState.fetch(memberAccount);
             console.log('State: ', membershipState.isMember, ' ', membershipState.bump);
 
         } catch (err) {
             console.log("Transaction error: ", err);
-            alert("Error:  ", err)
+            alert(`Error: ${err}`)
         }
     }
 
     if (!wallet.connected) {
-        /* If the user's wallet is not connected, display connect wallet button. */
         return (
+            <div
+                style={{
+                    backgroundImage: `url(${bg})`,
+                }}
+                className="for-minting-bg"
+            >
+                <div className="social-icons-container">
+                    <div className="discord-icon icon-common">
+                        <i className="fa-brands fa-twitter"></i>
+                    </div>
+                    <div className="twitter-icon">
+                        <i className="fa-brands fa-discord discord"></i>
+                    </div>
+                </div>
+                <div className="minting-main-container">
+                    <div className="minting-inner-container">
+                        <div className="minting-content-container">
+                            <div className="minting-title-container">
+                                <h4>Membership App</h4>
+                            </div>
+                            <div className="minting-supply-container">
+                                {/*<p>Total Supply : 3888 NFTs</p>*/}
+                            </div>
+                            <div className="img-typo-container">
+                                <div className="nft-img-container">
+                                    <img src={img} alt="NFT"/>
+                                </div>
+                                <div className="nft-typo-container">
+                                    <div className="nft-price-conatainer">
+                                        <p className="font-600">Membership Price</p>
+                                        <p className="price margin-top">1 SOL + transaction fee</p>
+                                    </div>
+                                </div>
+                            </div>
 
-            <div style={{display: 'flex', justifyContent: 'center', marginTop: '100px'}}>
-                <h3>Membership App</h3>
-                <WalletMultiButton/>
+                            <div
+                                style={{
+                                    color: "white",
+                                }}
+                                className="minting-selection-container"
+                            >
+                            </div>
+                            <br/>
+                            <br/>
+                            <br/><br/><br/><br/><br/><br/>
+                            <div>
+                                <WalletMultiButton/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        )
+        );
     } else {
+
         return (
-            <div className="App">
-                <h3>Membership App</h3>
-                <div>
+            <div
+                style={{
+                    backgroundImage: `url(${bg})`,
+                }}
+                className="for-minting-bg"
+            >
+                <div className="social-icons-container">
+                    <div className="discord-icon icon-common">
+                        <i className="fa-brands fa-twitter"></i>
+                    </div>
+                    <div className="twitter-icon">
+                        <i className="fa-brands fa-discord discord"></i>
+                    </div>
+                </div>
+                <div className="minting-main-container">
+                    <div className="minting-inner-container">
+                        <div className="minting-content-container">
+                            <div className="minting-title-container">
+                                <h4>Membership App</h4>
+                            </div>
+                            <div className="minting-supply-container">
+                                {/*<p>Total Supply : 3888 NFTs</p>*/}
+                            </div>
+                            <div className="img-typo-container">
+                                <div className="nft-img-container">
+                                    <img src={img} alt="NFT"/>
+                                </div>
+                                <div className="nft-typo-container">
+                                    <div className="nft-price-conatainer">
+                                        <p className="font-600">Membership Price</p>
+                                        <p className="price margin-top">1 SOL + transaction fee</p>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <button onClick={confirmTransaction}>Confirm Transaction</button>
-
-                    <br/>
-                    <br/>
-                    <p>Please set your wallet network to Devnet before testing</p>
-                    <br/>
-                    <p>This contract currently takes 1 SOL from the user and transfers to an owner wallet</p>
-                    <p>A member can only be registered once.</p>
-                    <br/>
-                    <p>They will get an error if they try to register again from the same account.</p>
+                            <div
+                                style={{
+                                    color: "white",
+                                }}
+                                className="minting-selection-container"
+                            >
+                            </div>
 
 
+                            <br/>
+                            <br/>
+                            <br/><br/><br/><br/>
+
+                            <div className="connect-mint-button-container">
+                                {/*<button className="ConnectMint">CONNECT WALLET</button>*/}
+                                <button className="ConnectMint" onClick={confirmTransaction}>Confirm Transaction
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         );
@@ -114,7 +217,7 @@ function App() {
 
 const AppWithProvider = () => (
     <ConnectionProvider endpoint="https://api.devnet.solana.com">
-        <WalletProvider wallets={wallets} autoConnect>
+        <WalletProvider wallets={wallets}>
             <WalletModalProvider>
                 <App/>
             </WalletModalProvider>

@@ -1,0 +1,160 @@
+.minting-main-container {
+  margin: 0 auto;
+  background: rgb(0, 0, 0, 50%);
+  border-radius: 20px;
+  width: 449px;
+  height: 560px;
+  padding: 10px;
+}
+.social-icons-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.icon-common i {
+  font-size: 32px;
+}
+
+.minting-title-container {
+  text-align: center;
+  color: white;
+}
+
+.minting-supply-container {
+  text-align: center;
+  color: white;
+}
+.img-typo-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+}
+.nft-img-container img {
+  max-width: 170px;
+  border-radius: 20px;
+}
+
+.max-nft {
+  background: #fff;
+  color: #000;
+  border-radius: 5px;
+  padding: 2px 5px;
+  font-size: 16px;
+}
+.minting-selection-container {
+  display: flex;
+  background: #262727;
+  align-items: center;
+  padding: 10px 0;
+  justify-content: center;
+  gap: 225px;
+  width: 86%;
+  margin: 35px auto;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+input.selectionInput {
+  width: 38px;
+  height: 22px;
+  font-size: 22px;
+  background: transparent;
+  color: white;
+  border: none;
+  text-align: center;
+  margin: 0 8px;
+}
+
+button.button-common {
+  color: white;
+  background: transparent;
+  border: none;
+  font-size: 25px;
+}
+.total-container {
+  width: 86%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  padding: 20px 0px;
+  gap: 190px;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  color: white;
+}
+.__total {
+  font-size: 20px;
+  font-weight: bold;
+}
+.total {
+  font-size: 16px;
+  font-weight: 600;
+}
+.connect-mint-button-container {
+  width: 86%;
+  margin: 25px auto;
+}
+.ConnectMint {
+  padding: 10px 20px;
+  outline: none;
+  color: #000;
+  background-color: #f1f1f1;
+  font-weight: 700;
+  font-size: 22px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  display: block;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+  border-radius: 7px;
+  border: none;
+  width: 100%;
+}
+.ConnectMint:hover {
+  background: #b9484f;
+  color: #fff;
+}
+
+.minting-title-container {
+  font-size: 32px;
+  line-height: 30px;
+}
+
+.minting-supply-container {
+  font-size: 16px;
+  padding-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.minted-container {
+  text-align: center;
+  color: white;
+}
+.price {
+  font-size: 20px;
+  font-weight: bold;
+}
+.font-600 {
+  font-weight: 600;
+}
+.nft-price-conatainer {
+  text-align: right;
+}
+.nft-mint-date {
+  text-align: right;
+}
+.margin-top {
+  margin-top: 10px;
+}
+
+.social-icons-container {
+  padding: 20px;
+}
+.discord {
+    font-size: 29px;
+}

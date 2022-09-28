@@ -2,11 +2,10 @@ extern crate core;
 
 use anchor_lang::prelude::*;
 use anchor_lang::{
-    prelude::*,
-    solana_program::{program::invoke_signed, system_instruction, program::invoke},
+    solana_program::{ system_instruction, program::invoke},
 };
 
-declare_id!("4DMFEdzUx65CZRLiuF3dpfRfAvdvmNftQLRuAKq8n3nW");
+declare_id!("Euko1wsUrXyA8tXJRbEEiVTEqpwTfom48Zy3Z6HYNqjn");
 
 #[program]
 pub mod checkout_transactions {
@@ -15,7 +14,7 @@ pub mod checkout_transactions {
 
     /// Transfers 1SOL from one account (must be program owned)
     /// to another account. The recipient can by any account
-    pub fn transfer_lamports(ctx: Context<Checkout>, base_account_bump: u8,
+    pub fn transfer_lamports(ctx: Context<Checkout>, base_account_bump: u8, lamports: u64,
     ) -> ProgramResult {
         // const AMOUNT: u64 = 1000000000;
         ctx.accounts.member_account.bump = base_account_bump;
@@ -29,7 +28,7 @@ pub mod checkout_transactions {
         let ix = system_instruction::transfer(
             &ctx.accounts.from.key(),
             &ctx.accounts.to.key(),
-            1_000_000_000,
+            lamports,
         );
         invoke(&ix, &[
             ctx.accounts.from.to_account_info(),
